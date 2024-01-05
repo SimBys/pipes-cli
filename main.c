@@ -28,8 +28,8 @@ void generate_grid(int grid[N][N])
 
     for (int i = 0; i < N; ++i) {
         for (int j = 0; j < N; j++) {
-            grid[i][j] = all_pipes[rand() % 12];
-            printf("%c", grid[i][j]);
+            grid[j][i] = all_pipes[rand() % 12];
+            printf("%c", grid[j][i]);
         }
         printf("\n");
     }
@@ -73,7 +73,6 @@ void update_cursor_position(int x, int y) {
 int main() {
     int grid[N][N], x = 0, y = N - 1;
     srand(_getpid() % INT_MAX); // randomize
-//    system("cls"); // clear console
     printf("\033[H\033[J"); // clear console
     generate_grid(grid);
     update_cursor_position(x, y);
