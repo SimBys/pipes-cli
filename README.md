@@ -1,19 +1,25 @@
 # pipes-cli
 
-- Simple cross platform console game
-- Platforms supported: Windows, Linux
+- Performance optimized cross-platform (Windows, Linux) console game made in C.
 
 ### Game objective
 
-- Rotate pipes to make a way from start to finish
+- Rotate pipes to create a path from the starting point to the finish.
 
-### My objective
+### How to play
 
-- Performance and memory optimized cross platform game
+- WASD for movement
+- SPACE for rotating pipe
+- Q to quit
 
-### What have I learned?
+#### gameplay:
+![gameplay](./src/game.png)
 
-- Console manipulation
-  - Moving cursor
+### Key Takeaways
+
+Throughout the development process, I gained insights into:
+
+- Console Manipulation
+  - Moving the cursor
   - Replacing characters
-- Cross platform
+- Cross-Platform Development
