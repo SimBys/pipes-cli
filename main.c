@@ -82,32 +82,32 @@ int main() {
     update_cursor_position(x, y);
 
     while (1) {
-        // command
+        // handle input
         switch (getch()) {
-            case 'q':
+            case 'q': // quit
                 return 0;
-            case ' ':
+            case ' ': // rotate
                 grid[x][y] = rotate(grid[x][y]);
                 update_cursor_position(x + 1, y);
                 update_grid_current_pos(grid[x][y]);
                 update_cursor_position(x, y);
                 break;
-            case 'w':
+            case 'w': // move up
                 if (y > 0)
                     y--;
                 update_cursor_position(x, y);
                 break;
-            case 's':
+            case 's': // move down
                 if (y < N - 1)
                     y++;
                 update_cursor_position(x, y);
                 break;
-            case 'a':
+            case 'a': // move left
                 if (x > 0)
                     x--;
                 update_cursor_position(x, y);
                 break;
-            case 'd':
+            case 'd': // move right
                 if (x < N - 1)
                     x++;
                 update_cursor_position(x, y);
@@ -115,7 +115,7 @@ int main() {
             default:
                 continue;
         }
-        // evaluate
+        // todo check if is solved
     }
 
     return 0;
