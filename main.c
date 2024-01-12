@@ -6,7 +6,6 @@
 #include <limits.h>
 
 #define N 5
-#define CURSOR 223 // ▀
 #define PIPE_VERTICAL 179 // │
 #define PIPE_HORIZONTAL 196 // ─
 #define PIPE_KNEE_0 192 // └
