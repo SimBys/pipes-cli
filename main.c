@@ -74,6 +74,7 @@ int main() {
     int grid[N][N], x = 0, y = N - 1;
     srand(_getpid() % INT_MAX); // randomize
     printf("\033[H\033[J"); // clear console
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_GREEN | FOREGROUND_INTENSITY); // set text color
     generate_grid(grid);
     update_cursor_position(x, y);
 
