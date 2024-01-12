@@ -37,30 +37,38 @@ void generate_grid(int grid[N][N])
     }
 }
 
-int rotate(int pipe) {
-    switch (pipe) {
+void rotate_pipe(int *pipe) {
+    switch (*pipe) {
         case PIPE_KNEE_0:
-            return PIPE_KNEE_1;
+            *pipe = PIPE_KNEE_1;
+            break;
         case PIPE_KNEE_1:
-            return PIPE_KNEE_2;
+            *pipe = PIPE_KNEE_2;
+            break;
         case PIPE_KNEE_2:
-            return PIPE_KNEE_3;
+            *pipe = PIPE_KNEE_3;
+            break;
         case PIPE_KNEE_3:
-            return PIPE_KNEE_0;
+            *pipe = PIPE_KNEE_0;
+            break;
         case PIPE_0:
-            return PIPE_2;
+            *pipe = PIPE_2;
+            break;
         case PIPE_1:
-            return PIPE_0;
+            *pipe = PIPE_0;
+            break;
         case PIPE_2:
-            return PIPE_3;
+            *pipe = PIPE_3;
+            break;
         case PIPE_3:
-            return PIPE_1;
+            *pipe = PIPE_1;
+            break;
         case PIPE_VERTICAL:
-            return PIPE_HORIZONTAL;
+            *pipe = PIPE_HORIZONTAL;
+            break;
         case PIPE_HORIZONTAL:
-            return PIPE_VERTICAL;
-        default:
-            return pipe;
+            *pipe = PIPE_VERTICAL;
+            break;
     }
 }
 
@@ -88,7 +96,7 @@ int main() {
             case 'q': // quit
                 return 0;
             case ' ': // rotate
-                grid[x][y] = rotate(grid[x][y]);
+                rotate_pipe(&grid[x][y]);
                 rerender_pipe(x, y, grid[x][y]);
                 break;
             case 'w': // move up
