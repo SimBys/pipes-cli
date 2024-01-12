@@ -20,6 +20,8 @@
 #define PIPE_PLUS 197 // ┼
 #define EMPTY_CHAR 32 // ' '
 
+HANDLE g_StdOutHandle;
+
 void generate_grid(int grid[N][N])
 {
     int all_pipes[] = {PIPE_KNEE_0, PIPE_KNEE_1, PIPE_KNEE_2, PIPE_KNEE_3,
@@ -67,14 +69,15 @@ void update_grid_current_pos(int pipe) {
 }
 
 void update_cursor_position(int x, int y) {
-    SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), (COORD){(SHORT)x, (SHORT)y});
+    SetConsoleCursorPosition(g_StdOutHandle, (COORD){(SHORT)x, (SHORT)y});
 }
 
 int main() {
+    g_StdOutHandle = GetStdHandle(STD_OUTPUT_HANDLE);
     int grid[N][N], x = 0, y = N - 1;
     srand(_getpid() % INT_MAX); // randomize
     printf("\033[H\033[J"); // clear console
-    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_GREEN | FOREGROUND_INTENSITY); // set text color
+    SetConsoleTextAttribute(g_StdOutHandle, FOREGROUND_GREEN | FOREGROUND_INTENSITY); // set text color
     generate_grid(grid);
     update_cursor_position(x, y);
 
