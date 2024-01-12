@@ -6,6 +6,10 @@
 #include <limits.h>
 
 #define N 5
+#define START_X 0
+#define START_Y (N - 1)
+#define END_X (N - 1)
+#define END_Y 0
 #define PIPE_VERTICAL 179 // │
 #define PIPE_HORIZONTAL 196 // ─
 #define PIPE_KNEE_0 192 // └
@@ -27,10 +31,15 @@ void generate_grid(unsigned char grid[N][N])
                        PIPE_0, PIPE_1, PIPE_2, PIPE_3, PIPE_PLUS,
                        PIPE_VERTICAL, PIPE_HORIZONTAL, EMPTY_CHAR};
 
-    for (char i = 0; i < N; ++i) {
-        for (char j = 0; j < N; j++) {
-            grid[j][i] = all_pipes[rand() % 12];
-            printf("%c", grid[j][i]);
+    for (char y = 0; y < N; ++y) {
+        for (char x = 0; x < N; x++) {
+            if (x == START_X && y == START_Y)
+                grid[x][y] = 'A';
+            else if (x == END_X && y == END_Y)
+                grid[x][y] = 'B';
+            else
+                grid[x][y] = all_pipes[rand() % 12];
+            printf("%c", grid[x][y]);
         }
         printf("\n");
     }
