@@ -114,8 +114,6 @@ int main() {
                 if (x < N - 1)
                     x++;
                 break;
-            default:
-                continue;
         }
         // todo check if is solved
     }
