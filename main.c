@@ -21,14 +21,14 @@
 
 HANDLE g_StdOutHandle;
 
-void generate_grid(int grid[N][N])
+void generate_grid(unsigned char grid[N][N])
 {
-    int all_pipes[] = {PIPE_KNEE_0, PIPE_KNEE_1, PIPE_KNEE_2, PIPE_KNEE_3,
+    char all_pipes[] = {PIPE_KNEE_0, PIPE_KNEE_1, PIPE_KNEE_2, PIPE_KNEE_3,
                        PIPE_0, PIPE_1, PIPE_2, PIPE_3, PIPE_PLUS,
                        PIPE_VERTICAL, PIPE_HORIZONTAL, EMPTY_CHAR};
 
-    for (int i = 0; i < N; ++i) {
-        for (int j = 0; j < N; j++) {
+    for (char i = 0; i < N; ++i) {
+        for (char j = 0; j < N; j++) {
             grid[j][i] = all_pipes[rand() % 12];
             printf("%c", grid[j][i]);
         }
@@ -36,7 +36,7 @@ void generate_grid(int grid[N][N])
     }
 }
 
-void rotate_pipe(int *pipe) {
+void rotate_pipe(unsigned char *pipe) {
     switch (*pipe) {
         case PIPE_KNEE_0:
             *pipe = PIPE_KNEE_1;
@@ -71,18 +71,19 @@ void rotate_pipe(int *pipe) {
     }
 }
 
-void update_cursor_position(int x, int y) {
+void update_cursor_position(char x, char y) {
     SetConsoleCursorPosition(g_StdOutHandle, (COORD){(SHORT)x, (SHORT)y});
 }
 
-void rerender_pipe(int x, int y, int pipe) {
-    update_cursor_position(x + 1, y);
+void rerender_pipe(char x, char y, unsigned char pipe) {
+    update_cursor_position(++x, y);
     printf("\b%c", pipe);
 }
 
 int main() {
     g_StdOutHandle = GetStdHandle(STD_OUTPUT_HANDLE);
-    int grid[N][N], x = 0, y = N - 1;
+    unsigned char grid[N][N];
+    char x = 0, y = N - 1;
     srand(_getpid() % INT_MAX); // randomize
     printf("\033[H\033[J"); // clear console
     SetConsoleTextAttribute(g_StdOutHandle, FOREGROUND_GREEN | FOREGROUND_INTENSITY); // set text color
