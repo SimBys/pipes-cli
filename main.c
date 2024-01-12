@@ -117,6 +117,4 @@ int main() {
         }
         // todo check if is solved
     }
-
-    return 0;
 }
