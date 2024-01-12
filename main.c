@@ -64,12 +64,13 @@ int rotate(int pipe) {
     }
 }
 
-void update_grid_current_pos(int pipe) {
-    printf("\b%c", pipe);
-}
-
 void update_cursor_position(int x, int y) {
     SetConsoleCursorPosition(g_StdOutHandle, (COORD){(SHORT)x, (SHORT)y});
+}
+
+void rerender_pipe(int x, int y, int pipe) {
+    update_cursor_position(x + 1, y);
+    printf("\b%c", pipe);
 }
 
 int main() {
@@ -88,8 +89,7 @@ int main() {
                 return 0;
             case ' ': // rotate
                 grid[x][y] = rotate(grid[x][y]);
-                update_cursor_position(x + 1, y);
-                update_grid_current_pos(grid[x][y]);
+                rerender_pipe(x, y, grid[x][y]);
                 break;
             case 'w': // move up
                 if (y > 0)
