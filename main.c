@@ -27,9 +27,16 @@ void generate_grid(unsigned char grid[N][N])
                        PIPE_0, PIPE_1, PIPE_2, PIPE_3, PIPE_PLUS,
                        PIPE_VERTICAL, PIPE_HORIZONTAL, EMPTY_CHAR};
 
+    // todo
+    // 1. generate random grid
+    // 2. check if is solvable
+    // 3. if not, goto 1
+    // 4. if yes, print grid
+}
+
+void print_grid(unsigned char grid[N][N]) {
     for (char i = 0; i < N; ++i) {
         for (char j = 0; j < N; j++) {
-            grid[j][i] = all_pipes[rand() % 12];
             printf("%c", grid[j][i]);
         }
         printf("\n");
@@ -88,6 +95,7 @@ int main() {
     printf("\033[H\033[J"); // clear console
     SetConsoleTextAttribute(g_StdOutHandle, FOREGROUND_GREEN | FOREGROUND_INTENSITY); // set text color
     generate_grid(grid);
+    print_grid(grid);
 
     while (1) {
         update_cursor_position(x, y);
